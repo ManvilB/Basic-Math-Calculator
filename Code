@@ -1,0 +1,124 @@
+print("Hello! Welcome to a calculator made from Python!")
+user_input = input("Would you like to do some basic math functions? (Y/N)")
+def yes():
+    print("Alright! Lets get started!\n")
+def no():
+    print("Bye!")
+    exit()
+def alt():
+    global user_input
+    if user_input != "Y" or user_input != "N":
+        user_input = input("Try again! Enter the letter Y or N\n")
+        while user_input!="Y" or user_input!="N":
+            if user_input==("Y"):
+                yes()
+                break
+            elif user_input==("N"):
+                no()
+                break
+            elif user_input!="Y" or user_input!="N":
+                alt()
+if user_input=="Y":
+    yes()
+elif user_input=="N":
+    no()
+else:
+    alt()
+WhatFunction = input("What function would you like to perform? (* for multiplication, / for Division, + for addition, - for subtraction)\n")
+def failure():
+        global WhatFunction
+        WhatFunction = input("Invalid Input! Enter *, +, -, or /\n")
+        while WhatFunction != "*"or"+"or"-"or"/":
+            if WhatFunction == "*"or"+"or"-"or"/":
+                success()
+                break
+            else:
+                failure()
+def more():
+    global WhatFunction
+    MoreOrNo = input("Do you want to do more functions? (Y/N)")
+    if MoreOrNo == "Y":
+        WhatFunction = input("What function would you like to perform? (* for multiplication, / for Division, + for addition, - for subtraction)\n")
+        if WhatFunction!= "*" or "+" or "-" or "/":
+            failure()
+        else:
+            success()
+    if MoreOrNo == "N":
+        no()
+    else:
+        alt()
+        if user_input == "Y":
+            WhatFunction = input("What function would you like to perform? (* for multiplication, / for Division, + for addition, - for subtraction)\n")
+            success()
+def success():
+    def multiplicaiton():
+        lst = []
+        nums_multiplication = int(input("How many numbers do you want to multiply?\n"))
+        for i in range(0, nums_multiplication):
+            nums_multiplication2 = int(input("Enter one number at a time and press enter: "))
+
+            lst.append(nums_multiplication2)
+        y = 0
+        final_mult = (lst[0])
+        while y<(len(lst)-1):
+            final_mult = final_mult*lst[y+1]
+            y+=1
+        print(final_mult)
+    if WhatFunction == "*":
+        multiplicaiton()
+        more()
+    def division():
+        lst1 = []
+        def div():
+            for i in range(0, 2):
+                nums_division = int(input("Enter the two numbers one at a time: "))
+                lst1.append(nums_division)
+        div()
+        while (lst1[1] == 0):
+            print("Can't divide by zero!")
+            lst1.clear()
+            div()
+        x = 0
+        while x < (len(lst1) - 1):
+            final_div = lst1[x]/lst1[x + 1]
+            x += 1
+        print(final_div)
+    if WhatFunction == "/":
+        division()
+        more()
+    def addition():
+        lst2 = []
+        nums_addition = int(input("How many numbers do you want to add?\n"))
+        for i in range(0, nums_addition):
+            nums_addition2 = int(input("Enter one number at a time and press enter: "))
+
+            lst2.append(nums_addition2)
+        z = 0
+        final_add = lst2[0]
+        while z<(len(lst2)-1):
+            final_add = final_add+lst2[z+1]
+            z+=1
+        print(final_add)
+    if WhatFunction == "+":
+        addition()
+        more()
+    def subtraction():
+        lst3 = []
+        nums_subtraction = int(input("How many numbers do you want to subtract?\n"))
+        for i in range(0, nums_subtraction):
+            nums_subtraction2 = int(input("Enter one number at a time and press enter: "))
+
+            lst3.append(nums_subtraction2)
+        w = 0
+        final_sub = lst3[0]
+        while w<(len(lst3)-1):
+            final_sub = final_sub-lst3[w+1]
+            w+=1
+        print(final_sub)
+    if WhatFunction == "-":
+        subtraction()
+        more()
+if WhatFunction == "*" or "+" or "-" or "/":
+    success()
+if WhatFunction != "*" or "+" or "-" or "/":
+    failure()
